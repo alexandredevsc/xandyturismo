@@ -1,0 +1,64 @@
+/* Separa o cabeçalho do conteúdo da página */
+.header {
+    background-color: var(--cor-branco);
+    border-bottom: 1px solid var(--cor-marinho);
+}
+
+/* Organiza primeiro para telas pequenas */
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Mantém símbolo e nome da marca lado a lado */
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--cor-marinho);
+    text-decoration: none;
+}
+
+.nome {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.subtitulo {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* Separa os Links e permite quebra quando necessário*/
+.navegacao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.navegacao a {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navegacao a:hover {
+    background-color: var(--cor-fundo);
+    text-decoration: underline;
+}
+
+/* Em telas maiores, coloca marca e navegação na mesma linha*/
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
