@@ -1,0 +1,27 @@
+/* Aplica o contraste da marca e separa o rodapé do conteúdo */
+.footer {
+    background-color: var(--cor-marinho);
+    color: var(--cor-branco);
+}
+
+/* Alinha o rodapé à largura e o espaçamento do restante do site */
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 24px 16px;
+}
+
+.marca {
+    margin: 0 0 8px;
+    font-weight: 700;
+}
+
+.slogan {
+    margin: 0 0 16px;
+}
+
+.aviso {
+    margin: 0;
+    max-width: 65ch;
+    font-size: 0.875rem;
+}
