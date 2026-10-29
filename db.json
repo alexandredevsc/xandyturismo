@@ -1,0 +1,112 @@
+{
+    "produtos": [
+        {
+            "id": "1",
+            "nome": "Curaçao - Cores do Caribe",
+            "descricao": "Pacote turístico fictício inspirado nas praias e nas fachadas coloridas de Willemstad, em Curaçao.",
+            "preco": 6490,
+            "categoria": "Caribe",
+            "imagem": "/src/assets/images/destinos/curacao.jpg",
+            "estoque": 8
+        },
+        {
+            "id": "2",
+            "nome": "Cancún - Mar Turquesa",
+            "descricao": "Pacote turístico fictício inspirado nas praias de areia branca e no mar turquesa de Cancún.",
+            "preco": 7290,
+            "categoria": "Caribe",
+            "imagem": "/src/assets/images/destinos/cancun.jpg",
+            "estoque": 10
+        },
+        {
+            "id": "3",
+            "nome": "Punta cana - Encantos de Saona",
+            "descricao": "Pacote turístico fictício para Punta Cana, com passeio ilustrativo inspirado na Ilha Saona, na República Dominicana.",
+            "preco": 6890,
+            "categoria": "Caribe",
+            "imagem": "/src/assets/images/destinos/punta-cana.jpg",
+            "estoque": 6
+        },
+        {
+            "id": "4",
+            "nome": "Aruba - Brisa do Caribe",
+            "descricao": "Pacote turístico fictício inspirado nas praias claras, nas águas tranquilas e nas árvores divi-divi de Aruba..",
+            "preco": 7990,
+            "categoria": "Caribe",
+            "imagem": "/src/assets/images/destinos/aruba.jpg",
+            "estoque": 5
+        },
+        {
+            "id": "5",
+            "nome": "Paris - Luzes e História",
+            "descricao": "Pacote turístico fictício inspirado na Torre Eiffel, no Rio Sena e na arquitetura de Paris.",
+            "preco": 9490,
+            "categoria": "Europa",
+            "imagem": "/src/assets/images/destinos/paris.jpg",
+            "estoque": 7
+        },
+        {
+            "id": "6",
+            "nome": "Roma - Caminhos da História",
+            "descricao": "Pacote turístico fictício inspirado no Coliseu e nas paisagens históricas de Roma..",
+            "preco": 8790,
+            "categoria": "Europa",
+            "imagem": "/src/assets/images/destinos/roma.jpg",
+            "estoque": 9
+        },
+        {
+            "id": "7",
+            "nome": "Lisboa - Cores e Tradições",
+            "descricao": "Pacote turístico fictício inspirado nos bondes, nos azulejos e nas ruas históricas de Lisboa.",
+            "preco": 7690,
+            "categoria": "Europa",
+            "imagem": "/src/assets/images/destinos/lisboa.jpg",
+            "estoque": 12
+        },
+        {
+            "id": "8",
+            "nome": "Orlando - Descobertas na Flórida",
+            "descricao": "Pacote turístico fictício inspirado nos lagos, nas áreas verdes e na paisagem urgana de Orlando.",
+            "preco": 8990,
+            "categoria": "América do Norte",
+            "imagem": "/src/assets/images/destinos/orlando.jpg",
+            "estoque": 8
+        },
+        {
+            "id": "9",
+            "nome": "Nova York - Luzes da Times Square",
+            "descricao": "Pacote turístico fictício inspirado nos telões luminosos e na movimentação da Times Square, em Nova York.",
+            "preco": 9990,
+            "categoria": "América do Norte",
+            "imagem": "/src/assets/images/destinos/nova-york.jpg",
+            "estoque": 4
+        },
+        {
+            "id": "10",
+            "nome": "Buenos Aires - Cultura e Avenidas",
+            "descricao": "Pacote turístico fictício inspirado no obelisco, nas grandes avenidas e na arquitetura de Buenos Aires.",
+            "preco": 3490,
+            "categoria": "América do Sul",
+            "imagem": "/src/assets/images/destinos/buenos-aires.jpg",
+            "estoque": 15
+        },
+        {
+            "id": "11",
+            "nome": "Santiago - Entre a Cidade e os Andes",
+            "descricao": "Pacote turístico fictício inspirado na paisagem urgana de Santiago e na Cordilheira dos Andes.",
+            "preco": 4290,
+            "categoria": "América do Sul",
+            "imagem": "/src/assets/images/destinos/santiago.jpg",
+            "estoque": 10
+        },
+        {
+            "id": "12",
+            "nome": "Rio de Janeiro - Mar e Montanhas",
+            "descricao": "Pacote turístico fictício inspirado no Pão de Açúcar e na Baía de Guanabara, no Rio de Janeiro.",
+            "preco": 2490,
+            "categoria": "América do Sul",
+            "imagem": "/src/assets/images/destinos/rio-de-janeiro.jpg",
+            "estoque": 18
+        }
+    ]
+}
