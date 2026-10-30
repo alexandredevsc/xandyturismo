@@ -1,0 +1,66 @@
+.listaProdutos {
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Em tablets, exibe dois pacotes por linha. */
+@media (min-width: 768px) {
+    .listaProdutos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Em telas grandes, aproveita o espaço com quatro pacotes por linha. */
+@media (min-width: 1200px) {
+    .listaProdutos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.busca {
+    margin-top: 24px;
+}
+
+.busca label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--cor-marinho);
+    font-weight: 700;
+}
+
+.campoBusca {
+    display: flex;
+    gap: 10px;
+    max-width: 560px;
+}
+
+.campoBusca input {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 14px;
+    color: var(--cor-texto);
+    background-color: var(--cor-branco);
+    border: 1px solid #b8c7d8;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.campoBusca button {
+    padding: 12px 16px;
+    color: var(--cor-branco);
+    background-color: var(--cor-marinho);
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.campoBusca input:focus-visible,
+.campoBusca button:focus-visible {
+    outline: 3px solid var(--cor-turquesa);
+    outline-offset: 2px;
+}
