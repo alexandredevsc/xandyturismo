@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./ProdutoCard.module.css";
+import { useCarrinho } from "../../../hooks/useCarrinho.js";
 
 // Formata o preço sempre no padrão brasileiro.
 const formatarPreco = (preco) =>
@@ -11,6 +12,7 @@ const formatarPreco = (preco) =>
 
 // Exibe as informações resumidas de um pacote no catálogo.
 function ProdutoCard({ produto }) {
+  const { adicionarAoCarrinho } = useCarrinho();
   return (
     <li className={styles.item}>
       <article className={styles.card}>
@@ -35,7 +37,13 @@ function ProdutoCard({ produto }) {
             <Link to={`/produtos/${produto.id}`}>Ver detalhes</Link>
 
             {/* A ação real será ligada ao Contexto do carrinho depois. */}
-            <button type="button">Adicionar ao carrinho</button>
+            <button
+              type="button"
+              onClick={() => adicionarAoCarrinho(produto)}
+              disabled={produto.estoque === 0}
+            >
+              {produto.estoque === 0 ? "Esgotado" : "Adicionar ao carrinho"}
+            </button>
           </div>
         </div>
       </article>

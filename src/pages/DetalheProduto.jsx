@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { buscarProdutoPorId } from "../services/api.js";
 import styles from "./DetalheProduto.module.css";
+import { useCarrinho } from "../hooks/useCarrinho.js";
 
 //Formata o valor do pacote no padrão brasileiro.
 const formatarPreco = (preco) =>
@@ -16,6 +17,8 @@ function DetalheProduto() {
   const [produto, setProduto] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
+
+  const { adicionarAoCarrinho } = useCarrinho();
 
   useEffect(() => {
     // Permite cancelar a consulta quando a página sai da tela.
@@ -101,8 +104,11 @@ function DetalheProduto() {
             className={styles.botao}
             type="button"
             disabled={produto.estoque === 0}
+            onClick={() => adicionarAoCarrinho(produto)}
           >
-            Adicionar ao carrinho
+            {produto.estoque === 0
+              ? "Pacote esgotado"
+              : "Adicionar ao carrinho"}
           </button>
         </div>
       </article>
