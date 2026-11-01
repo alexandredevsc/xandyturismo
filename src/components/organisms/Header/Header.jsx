@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import simbolo from "../../../assets/brand/simbolo-xandyturismo-256.png";
 import styles from "./Header.module.css";
+import { useCarrinho } from "../../../hooks/useCarrinho.js";
 
 // Apresenta a marca e a navegação principal
 function Header() {
+  const { quantidadeTotal } = useCarrinho();
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -19,7 +21,12 @@ function Header() {
         {/* Permite navegar entre catálogo e carrinho */}
         <nav aria-label="Navegação principal" className={styles.navegacao}>
           <Link to="/produtos">Produtos</Link>
-          <Link to="/carrinho">Carrinho</Link>
+          <Link
+            to="/carrinho"
+            aria-label={`Carrinho com ${quantidadeTotal}pacote(s)`}
+          >
+            Carrinho ({quantidadeTotal})
+          </Link>
         </nav>
       </div>
     </header>
