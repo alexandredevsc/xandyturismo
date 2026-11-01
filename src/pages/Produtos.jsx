@@ -3,6 +3,11 @@ import { buscarProdutos } from "../services/api.js";
 import ProdutoCard from "../components/molecules/ProdutoCard/ProdutoCard.jsx";
 import { filtrarProdutos } from "../utils/filtrarProdutos.js";
 import styles from "./Produtos.module.css";
+import bannerHeroCentro from "../assets/images/banner-hero-centro.png";
+import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
+import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
+import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 // Carrega o catálogo e apresenta os estados da consulta.
 function Produtos() {
@@ -50,51 +55,118 @@ function Produtos() {
   }, []);
 
   return (
-    <section>
-      <h1>Explore nossos destinos</h1>
-      <p>Encontre seu próximo destino com a XandyTurismo.</p>
+    <>
+      <section
+        className={styles.hero}
+        style={{ "--imagem-hero": `url(${bannerHeroCentro})` }}
+      >
+        <div className={styles.heroConteudo}>
+          <p className={styles.heroIdentificacao}>XANDY TURISMO</p>
 
-      {/* Apresenta o resultado atual da consulta. */}
-      {carregando ? (
-        <p role="status">Carregando pacotes...</p>
-      ) : erro ? (
-        <p role="alert">{erro}</p>
-      ) : produtos.length === 0 ? (
-        <p>Nenhum pacote disponível no momento.</p>
-      ) : (
-        <>
-          <div className={styles.busca}>
-            <label htmlFor="busca">Buscar pacote</label>
+          <h1>
+            Explore
+            <br />
+            o Mundo com
+            <br />a <span>XandyTurismo</span>
+          </h1>
 
-            <div className={styles.campoBusca}>
-              <input
-                id="busca"
-                type="search"
-                value={termoBusca}
-                onChange={(evento) => setTermoBusca(evento.target.value)}
-                placeholder="Ex.: Caribe, Roma ou praia"
-              />
+          <div className={styles.linhaDestaque} />
 
-              {termoBusca && (
-                <button type="button" onClick={() => setTermoBusca("")}>
-                  Limpar
-                </button>
-              )}
+          <p className={styles.heroTexto}>
+            Pacotes turísticos para viver experiências que conectam você ao
+            mundo.
+          </p>
+
+          <a className={styles.heroBotao} href="#catalogo">
+            Conhecer pacotes
+          </a>
+
+          <ul className={styles.beneficios}>
+            <li>
+              <GppGoodOutlinedIcon aria-hidden="true" />
+              <span>
+                Viagens
+                <br />
+                seguras
+              </span>
+            </li>
+            <li>
+              <ConfirmationNumberOutlinedIcon aria-hidden="true" />
+              <span>
+                Pacotes
+                <br />
+                completos
+              </span>
+            </li>
+            <li>
+              <SupportAgentOutlinedIcon aria-hidden="true" />
+              <span>
+                Atendimento
+                <br />
+                personalizado
+              </span>
+            </li>
+            <li>
+              <PublicOutlinedIcon aria-hidden="true" />
+              <span>
+                Destinos
+                <br />
+                incríveis
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="catalogo" className={styles.catalogo}>
+        <header className={styles.cabecalhoCatalogo}>
+          <p>DESTINOS INESQUECÍVEIS</p>
+          <h2>Encontre a sua próxima viagem</h2>
+          <span>Escolha um destino e comece a planejar sua experiência</span>
+        </header>
+
+        {/* Apresenta o resultado atual da consulta. */}
+        {carregando ? (
+          <p role="status">Carregando pacotes...</p>
+        ) : erro ? (
+          <p role="alert">{erro}</p>
+        ) : produtos.length === 0 ? (
+          <p>Nenhum pacote disponível no momento.</p>
+        ) : (
+          <>
+            <div className={styles.busca}>
+              <label htmlFor="busca">Para onde você quer viajar?</label>
+
+              <div className={styles.campoBusca}>
+                <input
+                  id="busca"
+                  type="search"
+                  value={termoBusca}
+                  onChange={(evento) => setTermoBusca(evento.target.value)}
+                  placeholder="Ex.: Caribe, Roma ou praia"
+                />
+
+                {termoBusca && (
+                  <button type="button" onClick={() => setTermoBusca("")}>
+                    Limpar
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
 
-          {produtosFiltrados.length === 0 ? (
-            <p>Nenhum pacote foi encontrado para esta busca.</p>
-          ) : (
-            <ul className={styles.listaProdutos}>
-              {produtosFiltrados.map((produto) => (
-                <ProdutoCard key={produto.id} produto={produto} />
-              ))}
-            </ul>
-          )}
-        </>
-      )}
-    </section>
+            {produtosFiltrados.length === 0 ? (
+              <p>Nenhum pacote foi encontrado para esta busca.</p>
+            ) : (
+              <ul className={styles.listaProdutos}>
+                {produtosFiltrados.map((produto) => (
+                  <ProdutoCard key={produto.id} produto={produto} />
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </section>
+    </>
   );
 }
 

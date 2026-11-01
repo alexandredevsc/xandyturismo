@@ -19,3 +19,22 @@ export async function buscarProdutos(signal) {
 
   return produtos;
 }
+
+// Consulta um pacote pelo identificador presenta na URL.
+
+export async function buscarProdutoPorId(id, signal) {
+  const resposta = await fetch(`${API_URL}/produtos/${id}`,
+    { signal });
+
+  // Produto inexistente é tratado pela página, sem exibir erro técnicco.
+
+  if (resposta.status === 404) {
+    return null;
+  }
+
+  if (!resposta.ok) {
+    throw new Error(`Erro ao consultar produto: HTTP ${resposta.status}`);
+  }
+
+  return resposta.json();
+}
