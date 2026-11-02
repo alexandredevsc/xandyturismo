@@ -175,7 +175,7 @@ A identidade visual, o banner e as imagens dos destinos foram produzidos com aux
 
 ## Links do projeto
 
-- **Aplicação publicada:** [Acessar XandyTurismo](COLE_AQUI_O_LINK_DO_VERCEL)
+- **Aplicação publicada:** [Acessar XandyTurismo](https://xandyturismo.vercel.app)
 - **Planejamento no Trello:** [Ver quadro do projeto](https://trello.com/b/HjeHwy3B/xandyturismo-projeto-final-sc-tec)
 - **Vídeo de apresentação:** [Assistir no YouTube](COLE_AQUI_O_LINK_DO_YOUTUBE)
 
