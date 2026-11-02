@@ -14,7 +14,7 @@ const dadosPagamentoSchema = z.object({
   numeroCartao: z
     .string()
     .trim()
-    .regex(/^\d{16}$/, "Digite os 16 números do cartão fictício."),
+    .regex(/^\d{4}( \d{4}){3}$/, "Digite os 16 números do cartão fictício."),
   validade: z
     .string()
     .trim()
@@ -31,10 +31,27 @@ const formatarPreco = (preco) =>
     currency: "BRL",
   }).format(preco);
 
+const manterSomenteDigitos = (valor) => valor.replace(/\D/g, "");
+
+const formatarNumeroCartao = (valor) =>
+  manterSomenteDigitos(valor)
+    .slice(0, 16)
+    .replace(/(\d{4})(?=\d)/g, "$1 ");
+
+const formatarValidade = (valor) => {
+  const numeros = manterSomenteDigitos(valor).slice(0, 4);
+
+  if (numeros.length <= 2) {
+    return numeros;
+  }
+
+  return `${numeros.slice(0, 2)}/${numeros.slice(2)}`;
+};
+
 // Simula o pagamento e direciona para o resultado da compra fictícia.
 function Pagamento() {
   const navigate = useNavigate();
-  const { itens, valorTotal} = useCarrinho();
+  const { itens, valorTotal } = useCarrinho();
   const [processando, setProcessando] = useState(false);
 
   const {
@@ -44,6 +61,9 @@ function Pagamento() {
   } = useForm({
     resolver: zodResolver(dadosPagamentoSchema),
   });
+
+  const campoNumeroCartao = register("numeroCartao");
+  const campoValidade = register("validade");
 
   async function finalizarPagamento(dados) {
     setProcessando(true);
@@ -110,9 +130,14 @@ function Pagamento() {
               id="numeroCartao"
               type="text"
               inputMode="numeric"
-              maxLength="16"
-              placeholder="1234567812345678"
-              {...register("numeroCartao")}
+              autoComplete="cc-number"
+              maxLength="19"
+              placeholder="0000 0000 0000 0000"
+              {...campoNumeroCartao}
+              onChange={(evento) => {
+                evento.target.value = formatarNumeroCartao(evento.target.value);
+                campoNumeroCartao.onChange(evento);
+              }}
             />
             {errors.numeroCartao && (
               <small>{errors.numeroCartao.message}</small>
@@ -126,9 +151,14 @@ function Pagamento() {
                 id="validade"
                 type="text"
                 inputMode="numeric"
+                autoComplete="cc-exp"
                 maxLength="5"
-                placeholder="12/30"
-                {...register("validade")}
+                placeholder="MM/AA"
+                {...campoValidade}
+                onChange={(evento) => {
+                  evento.target.value = formatarValidade(evento.target.value);
+                  campoValidade.onChange(evento);
+                }}
               />
               {errors.validade && <small>{errors.validade.message}</small>}
             </label>
@@ -139,6 +169,7 @@ function Pagamento() {
                 id="cvv"
                 type="password"
                 inputMode="numeric"
+                autoComplete="cc-csc"
                 maxLength="3"
                 placeholder="123"
                 {...register("cvv")}
