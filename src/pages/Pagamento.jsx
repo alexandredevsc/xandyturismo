@@ -48,6 +48,23 @@ const formatarValidade = (valor) => {
   return `${numeros.slice(0, 2)}/${numeros.slice(2)}`;
 };
 
+const cartaoTemNumeroRepetido = (numeroCartao) => {
+  const numero = manterSomenteDigitos(numeroCartao);
+
+  return /^(\d)\1{15}$/.test(numero) || /^(\d{4})\1{3}$/.test(numero);
+};
+
+const validadeEstaVencida = (validade) => {
+  const [mes, ano] = validade.split("/").map(Number);
+  const hoje = new Date();
+  const anoCompleto = 2000 + ano;
+
+  return (
+    anoCompleto < hoje.getFullYear() ||
+    (anoCompleto === hoje.getFullYear() && mes < hoje.getMonth() + 1)
+  );
+};
+
 // Simula o pagamento e direciona para o resultado da compra fictícia.
 function Pagamento() {
   const navigate = useNavigate();
@@ -76,7 +93,12 @@ function Pagamento() {
       valor.toLowerCase().includes("tentativa de golpe"),
     );
 
-    if (possuiTentativaDeGolpe) {
+    const pagamentoRecusado =
+      possuiTentativaDeGolpe ||
+      cartaoTemNumeroRepetido(dados.numeroCartao) ||
+      validadeEstaVencida(dados.validade);
+
+    if (pagamentoRecusado) {
       navigate("/falha");
       return;
     }
