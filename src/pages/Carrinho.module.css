@@ -204,4 +204,21 @@
         grid-column: 2;
         justify-self: start;
     }
+
+    .item,
+.resumo {
+    width: 100%;
+    box-sizing: border-box;
+    margin-inline: 0;
+}
+
+.item,
+.resumo {
+    width: 100%;
+    box-sizing: border-box;
+    margin-inline: 0;
+    
+}
+
+
 }

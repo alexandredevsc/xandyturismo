@@ -11,13 +11,16 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
+    text-align: center;
 }
 
 /* Mantém símbolo e nome da marca lado a lado */
 .marca {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     color: var(--cor-marinho);
     text-decoration: none;
@@ -39,6 +42,7 @@
 .navegacao {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
 }
 
@@ -60,5 +64,44 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+}
+
+/* Organiza a marca e a navegação de forma centralizada no celular. */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        box-sizing: border-box;
+        align-items: center;
+        text-align: center;
+    }
+
+    .marca {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        gap: 4px;
+    }
+
+    .marca > span {
+        text-align: center;
+    }
+
+    .navegacao {
+        width: min(100%, 280px);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        gap: 0;
+    }
+
+    .navegacao a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .marca,
+    .navegacao {
+        transform: translateX(-8px);
     }
 }
