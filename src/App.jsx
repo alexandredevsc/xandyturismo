@@ -7,6 +7,7 @@ import DetalheProduto from "./pages/DetalheProduto.jsx";
 import Pagamento from "./pages/Pagamento.jsx";
 import Sucesso from "./pages/Sucesso.jsx";
 import Falha from "./pages/Falha.jsx";
+import RotaPagamentoProtegida from "./components/guards/RotaPagamentoProtegida.jsx";
 
 // Associa as páginas às rotas dentro do Layout compartilhado
 
@@ -27,7 +28,14 @@ function App() {
         <Route path="/produtos/:id" element={<DetalheProduto />} />
 
         {/* Exibe a estrutura inicial; a proteção será implementada com o carrinho */}
-        <Route path="/pagamento" element={<Pagamento />} />
+        <Route
+          path="/pagamento"
+          element={
+            <RotaPagamentoProtegida>
+              <Pagamento />
+            </RotaPagamentoProtegida>
+          }
+        />
 
         {/* Apresenta a tela de aprovação da compra fictícia */}
         <Route path="/sucesso" element={<Sucesso />} />

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCarrinho } from "../hooks/useCarrinho.js";
 import styles from "./Carrinho.module.css";
+import ItemCarrinho from "../components/molecules/ItemCarrinho/ItemCarrinho.jsx";
 
 // Formata valores monetários no padrão brasileiro
 const formatarPreco = (preco) =>
@@ -38,58 +39,14 @@ function Carrinho() {
       <div className={styles.conteudo}>
         <ul className={styles.lista}>
           {itens.map((item) => (
-            <li key={item.produto.id} className={styles.item}>
-              <img
-                className={styles.imagem}
-                src={item.produto.imagem}
-                alt={`Destino turístico: ${item.produto.nome}`}
-              />
-
-              <div className={styles.informacoes}>
-                <span className={styles.categoria}>
-                  {item.produto.categoria}
-                </span>
-
-                <h2>{item.produto.nome}</h2>
-
-                <strong>{formatarPreco(item.produto.preco)} </strong>
-
-                <div className={styles.quantidade}>
-                  <button
-                    type="button"
-                    aria-label={`Diminuir quantidade de ${item.produto.nome}`}
-                    onClick={() =>
-                      atualizarQuantidade(item.produto.id, item.quantidade - 1)
-                    }
-                  >
-                    -
-                  </button>
-
-                  <span aria-label="Quantidade selecionada">
-                    {item.quantidade}
-                  </span>
-
-                  <button
-                    type="button"
-                    aria-label={`Aumentar quantidade de ${item.produto.nome}`}
-                    disabled={item.quantidade === item.produto.estoque}
-                    onClick={() =>
-                      atualizarQuantidade(item.produto.id, item.quantidade + 1)
-                    }
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className={styles.remover}
-                onClick={() => removerDoCarrinho(item.produto.id)}
-              >
-                Remover
-              </button>
-            </li>
+            <ItemCarrinho
+              key={item.produto.id}
+              item={item}
+              classes={styles}
+              formatarPreco={formatarPreco}
+              onAtualizarQuantidade={atualizarQuantidade}
+              onRemover={removerDoCarrinho}
+            />
           ))}
         </ul>
 
