@@ -1,12 +1,11 @@
-/* Organiza cabeçalho, conteúdo e rodapé em uma coluna */
-
+/* Organiza cabeçalho, conteúdo e rodapé em uma coluna. */
 .layout {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
 }
 
-/* Limita a largura e cria espaço nas laterais do conteúdo */
+/* Limita a largura e cria espaço nas laterais do conteúdo. */
 .conteudo {
     width: 100%;
     max-width: 1200px;
@@ -15,10 +14,18 @@
     flex: 1;
 }
 
-/* Amplia o respiro vertical quando há mais espaço disponível */
-
+/* Amplia o respiro vertical quando há mais espaço disponível. */
 @media (min-width: 768px) {
     .conteudo {
         padding-block: 48px;
+    }
+}
+
+/* Mantém a mesma margem lateral em todas as páginas no celular. */
+@media (max-width: 767px) {
+    .conteudo {
+        max-width: none;
+        padding: 24px;
+        box-sizing: border-box;
     }
 }

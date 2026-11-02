@@ -85,3 +85,32 @@
     color: var(--cor-branco);
     background-color: var(--cor-laranja);
 }
+
+/* Centraliza os cards e seus conteúdos em telas pequenas. */
+@media (max-width: 767px) {
+    .item {
+        width: 100%;
+        
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .conteudo {
+        align-items: center;
+        text-align: center;
+    }
+
+    .conteudo h2,
+    .descricao {
+        min-height: auto;
+    }
+
+    .acoes {
+        justify-content: center;
+    }
+
+    
+}
+

@@ -7,11 +7,13 @@
     grid-template-columns: minmax(470px, 560px) 1fr minmax(220px, 300px);
     align-items: end;
     background-image:
-        linear-gradient(90deg,
+        linear-gradient(
+            90deg,
             rgb(11 45 79 / 96%) 0%,
             rgb(11 45 79 / 80%) 28%,
             rgb(11 45 79 / 30%) 48%,
-            rgb(11 45 79 / 0%) 65%),
+            rgb(11 45 79 / 0%) 65%
+        ),
         var(--imagem-hero);
     background-position: center;
     background-size: cover;
@@ -129,7 +131,6 @@
     font-size: 2rem;
 }
 
-/* Área do catálogo e campo de busca. */
 .catalogo {
     width: min(100%, 1200px);
     margin: 0 auto;
@@ -211,7 +212,6 @@
     outline-offset: 3px;
 }
 
-/* Grade dos pacotes: 1 coluna no celular, 2 no tablet e 4 no desktop. */
 .listaProdutos {
     margin: 32px 0 0;
     padding: 0;
@@ -252,8 +252,6 @@
         width: 78px;
         height: 5px;
         margin: 10px 0 16px;
-        background-color: var(--cor-laranja);
-        border-radius: 999px;
         transform: rotate(-2deg);
         transform-origin: left center;
     }
@@ -261,10 +259,18 @@
     .beneficios {
         margin-top: 0;
         gap: 18px;
+        flex-wrap: nowrap;
     }
 
     .beneficios li {
+        width: auto;
+        min-height: auto;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
         font-size: 0.78rem;
+        white-space: nowrap;
     }
 
     .beneficios svg {
@@ -284,11 +290,13 @@
         align-self: start;
         justify-self: end;
         color: #062447;
-        background: linear-gradient(90deg,
-                transparent,
-                rgb(255 255 255 / 72%) 20%,
-                rgb(255 255 255 / 72%) 80%,
-                transparent);
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgb(255 255 255 / 72%) 20%,
+            rgb(255 255 255 / 72%) 80%,
+            transparent
+        );
         font-size: 1.55rem;
         line-height: 1.12;
         text-align: center;
@@ -316,9 +324,24 @@
 /* Ajustes para celulares. */
 @media (max-width: 767px) {
     .hero {
-        min-height: 480px;
-        grid-template-columns: 1fr;
-        padding: 40px 24px;
+        min-height: auto;
+        padding: 32px 24px;
+        display: block;
+        background-image:
+            linear-gradient(
+                90deg,
+                rgb(11 45 79 / 88%) 0%,
+                rgb(11 45 79 / 72%) 48%,
+                rgb(11 45 79 / 35%) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgb(11 45 79 / 40%) 0%,
+                transparent 60%
+            ),
+            var(--imagem-hero);
+        background-position: 58% center;
+        background-size: cover;
     }
 
     .aviao,
@@ -326,19 +349,78 @@
         display: none;
     }
 
+    .heroTexto {
+        max-width: 29ch;
+        margin-bottom: 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgb(0 0 0 / 45%);
+    }
+
+    .heroBotao {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
     .beneficios {
-        flex-wrap: wrap;
-        gap: 14px;
+        margin: 16px 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
     }
 
     .beneficios li {
-        width: calc(50% - 7px);
+        width: auto;
+        min-height: 58px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--cor-marinho);
+        background-color: var(--cor-branco);
+        border: 1px solid #e2e0de;
+        border-radius: 8px;
+        font-size: 0.76rem;
         white-space: normal;
+    }
+
+    .beneficios svg {
+        color: var(--cor-marinho);
+        font-size: 1.75rem;
     }
 
     .campoBusca {
         flex-direction: column;
     }
+
+    .catalogo {
+    padding: 48px 0;
+}
+
+.cabecalhoCatalogo {
+    margin-inline: auto;
+    text-align: center;
+}
+
+.cabecalhoCatalogo span {
+    max-width: 30ch;
+    margin-inline: auto;
+}
+
+.busca {
+    margin: 24px auto 0;
+    text-align: center;
+}
+
+.busca label {
+    text-align: center;
+}
+
+.cabecalhoCatalogo,
+.busca {
+    transform: translateX(-8px);
+}
 }
 
 /* Em telas grandes, aproveita o espaço com quatro pacotes por linha. */

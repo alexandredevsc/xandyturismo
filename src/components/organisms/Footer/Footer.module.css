@@ -25,3 +25,19 @@
     max-width: 65ch;
     font-size: 0.875rem;
 }
+
+/* Centraliza o conteúdo do rodapé em telas pequenas. */
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        transform: translateX(-8px);
+    }
+
+    .marca,
+    .slogan,
+    .aviso {
+        margin-inline: auto;
+    }
+}
