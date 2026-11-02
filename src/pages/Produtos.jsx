@@ -9,6 +9,22 @@ import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumb
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
+const tempoMinimoCarregamento = 1500;
+
+const aguardar = (tempo, signal) =>
+  new Promise((resolve) => {
+    const temporizador = setTimeout(resolve, tempo);
+
+    signal.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(temporizador);
+        resolve();
+      },
+      { once: true },
+    );
+  });
+
 // Carrega o catálogo e apresenta os estados da consulta.
 function Produtos() {
   const [produtos, setProdutos] = useState([]);
@@ -27,8 +43,18 @@ function Produtos() {
     const controlador = new AbortController();
 
     async function carregarProdutos() {
+      const inicioCarregamento = Date.now();
+
       try {
         const lista = await buscarProdutos(controlador.signal);
+
+        const tempoDecorrido = Date.now() - inicioCarregamento;
+        const tempoRestante = Math.max(
+          0,
+          tempoMinimoCarregamento - tempoDecorrido,
+        );
+
+        await aguardar(tempoRestante, controlador.signal);
 
         if (!controlador.signal.aborted) {
           setProdutos(lista);
@@ -125,7 +151,6 @@ function Produtos() {
           <span>Escolha um destino e comece a planejar sua experiência</span>
         </header>
 
-        {/* Apresenta o resultado atual da consulta. */}
         {carregando ? (
           <p role="status">Carregando pacotes...</p>
         ) : erro ? (
