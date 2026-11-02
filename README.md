@@ -1,193 +1,184 @@
-# React + Vite
+# XandyTurismo - Tour Internacional
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web responsiva para demonstração de pacotes turísticos fictícios. O projeto foi desenvolvido como entrega acadêmica do Projeto Final SC TEC - Fron-End React, Módulo 2.
 
-Currently, two official plugins are available:
+> Não há reservas, viagens ou cobranças reais nesta aplicação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- Catálogo de pacotes consumido por uma API simulada com `json-server`.
+- Estados de carregamento, erro, catálogo vazio e busca sem resultado.
+- Busca por nome, categoria ou descrição, sem diferenciar maiúsculas e minúsculas.
+- Página de detalhes por pacote e tratamento para produto inexistente.
+- Carrinho global com context API e hook personalizado.
+- Inclusão, remoção e alteração de quantidade limitada ao estoque.
+- Cálculo automático da quantidade total e do valor do pedido.
+- Indicador de itens no cabeçalho.
+- Rota de pagamento protegida para carrinho vazio.
+- Formulário de pagamento fictício com React Hook Form, Zod e componentes Material UI.
+- Simulação de aprovação, que limpa o carrinho.
+- Simulação de recusa, que preserva o carrinho e exibe a mensagem `tentativa de golpe`.
+- Layout responsivo para celular, tablet e desktop.
+- Testes automatizados com Vitest e Testing Library.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router
+- Context API
+- CSS Modules
+- Material UI
+- React Hook Form
+- Zod
+- json-server
+- Vitest
+- Testing Library
+- ESLint
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## Organização planejada
-
-A estrutura será organizada por responsabilidade. As pastas e os arquivos serão criados conforme as funcionalidades forem desenvolvidas; portanto, a estrutura abaixo representa o planejamento do projeto.
+## Estrutura do projeto
 
 ```text
 src/
-  components/
-    atoms/
-    molecules/
-    organisms/
-    templates/
-  pages/
-  routes/
-  contexts/
-  hooks/
-  services/
-  utils/
-    __tests__/
-  assets/
-  styles/
+├── assets/                 # Imagens e identidade visual
+├── components/
+│   ├── guards/             # Proteção de rotas
+│   ├── molecules/          # ProdutoCard e ItemCarrinho
+│   ├── organisms/          # Header e Footer
+│   └── templates/          # Layout compartilhado
+├── contexts/               # Contexto e Provider do carrinho
+├── hooks/                  # Hook useCarrinho
+├── pages/                  # Páginas da aplicação
+├── services/               # Comunicação com a API simulada
+├── test/                   # Configuração dos testes
+└── utils/                  # Funções reutilizáveis, como a busca
 ```
 
-### Componentes — Atomic Design
+## Rotas
 
-- **atoms:** elementos pequenos da interface, como botão e preço.
-- **molecules:** combinações de elementos, como ProdutoCard e ItemCarrinho.
-- **organisms:** conjuntos maiores da interface, como Header e ListaProdutos.
-- **templates:** estrutura compartilhada das páginas, como Layout com Header, Outlet e Footer.
+| Rota            | Descrição                        |
+| --------------- | -------------------------------- |
+| `/`             | Redireciona para o catálogo      |
+| `/produtos`     | Catálogo e busca de pacotes      |
+| `/produtos/:id` | Detalhes de um pacote            |
+| `/carrinho`     | Pacotes adicionados ao carrinho  |
+| `/pagamento`    | Checkout fictício protegido      |
+| `/sucesso`      | Resultado de compra aprovada     |
+| `/falha`        | Resultado de compra não aprovada |
+| `*`             | Página não encontrada            |
 
-### Demais responsabilidades
+## Como executar localmente
 
-- **pages:** componentes das telas associadas às rotas, como Produtos, Carrinho e Pagamento.
-- **routes:** componentes auxiliares da navegação, como RotaPrivada.
-- **contexts:** gerenciamento de estado compartilhado, como os itens e operações do carrinho.
-- **hooks:** hooks customizados para reutilizar lógica React, como useCarrinho.
-- **services:** comunicação com a API e tratamento das respostas das requisições.
-- **utils:** funções independentes da interface, como busca, formatação monetária e cálculo de totais.
-- utils/__tests__/: testes unitários das funções de regra de negócio.
-- **assets:** recursos importados pelo código, como imagens e logotipos.
-- **styles:** estilos globais e definições visuais compartilhadas. Os arquivos CSS Modules ficarão próximos dos componentes que estilizam.
+### 1. Instale as dependências
 
-### Arquivos de entrada
+```bash
+npm install
+```
 
-- **index.html:** documento HTML inicial, localizado na raiz do projeto, com o elemento root.
-- **src/main.jsx:** inicializa o React e renderiza o componente principal no elemento root.
-- **src/App.jsx:** componente principal que organizará as rotas da aplicação.
+### 2. Inicie a API simulada
 
-### Critério de organização
+Em um terminal:
 
-Os componentes serão classificados conforme sua responsabilidade e composição, evitando divisões desnecessárias. O estado do carrinho ficará centralizado no contexto; as requisições ficarão nos serviços; e as regras de negócio reutilizáveis ficarão em utils.
+```bash
+npm run api
+```
 
-## Identidade visual planejada
+A API será disponibilizada em:
 
-A identidade de XandyTurismo segue o painel visual aprovado.
+```text
+http://localhost:3001
+```
 
-| Cor | Código | Uso planejado |
-|---|---|---|
-| Azul-marinho | #0B2D4F | Cabeçalho, títulos e fundos de destaque |
-| Laranja | #FF7A00 | Destaques e ações principais |
-| Turquesa | #00B4DB | Detalhes gráficos e elementos de apoio |
-| Fundo claro | #F5F7FA | Fundo das páginas |
-| Grafite | #1F2937 | Textos sobre fundos claros |
-| Branco | #FFFFFF | Superfícies e textos sobre fundos escuros |
-| Verde | #10B981 | Elementos de confirmação de sucesso |
+### 3. Inicie a aplicação
 
-As combinações de texto e fundo serão verificadas quanto ao contraste antes da aplicação nos componentes.
+Em outro terminal:
 
-A tipografia planejada é Poppins, com uma fonte alternativa sem serifa.
+```bash
+npm run dev
+```
 
-As imagens serão preparadas em arquivos individuais para logo, banner e pacotes. Textos e botões serão implementados em React para permitir adaptação às telas e acessibilidade.
+Abra o endereço informado pelo Vite, normalmente:
 
-### Tipografia e espaçamentos planejados
+```text
+http://localhost:5173
+```
 
-- Fonte principal: Poppins.
-- Fontes alternativas: Arial, sans-serif.
-- Texto base: 1rem, respeitando a configuração do navegador.
-- Altura de linha dos textos: 1.5.
-- Pesos: 400 para textos, 600 para subtítulos e botões, 700 para títulos.
-- Escala de espaçamento: 4, 8, 12, 16, 24, 32, 48 e 64px.
-- Abordagem mobile-first, com tamanhos de títulos e espaçamentos ajustados conforme a largura disponível.
+## Comandos disponíveis
 
-### Símbolo da marca
+| Comando                 | Finalidade                              |
+| ----------------------- | --------------------------------------- |
+| `npm run dev`           | Inicia a aplicação em desenvolvimento   |
+| `npm run api`           | Inicia a API simulada com json-server   |
+| `npm run test -- --run` | Executa os testes automatizados uma vez |
+| `npm run lint`          | Verifica regras de qualidade do código  |
+| `npm run build`         | Gera a versão de produção               |
+| `npm run preview`       | Visualiza localmente a build gerada     |
 
-O símbolo foi gerado com auxílio de IA a partir do painel visual fornecido pelo autor e aprovado para o projeto.
+## Testes automatizados
 
-- Original: src/assets/brand/simbolo-xandyturismo.png — 1254 × 1254 pixels.
-- Versão reduzida: src/assets/brand/simbolo-xandyturismo-256.png — 256 × 256 pixels, 73.734 bytes.
-- Formato PNG com transparência.
-- Redimensionamento realizado no Paint, preservando o original.
-- A versão reduzida será avaliada no cabeçalho antes da definição de uso final.
+Foram implementados 14 testes automatizados:
 
-As imagens geradas são ilustrativas e não representam ofertas ou reservas reais.
+- **5 testes** para a busca de pacotes:
+  - busca vazia;
+  - busca por nome;
+  - busca por categoria;
+  - busca por descrição;
+  - busca sem correspondência.
 
-### Banner de abertura
+- **5 testes** para o serviço da API:
+  - lista válida;
+  - erro HTTP;
+  - resposta inválida;
+  - pacote inexistente;
+  - pacote encontrado.
 
-Imagem ilustrativa gerada com IA, inspirada na Isla Saona, República Dominicana. Não representa uma fotografia documental do destino.
+- **4 testes** para as regras do carrinho:
+  - adição e cálculo de total;
+  - limite de estoque;
+  - quantidade mínima;
+  - remoção e limpeza.
 
-- Original: src/assets/images/banner-saona-original.png.
-- Versão para uso no site: src/assets/images/banner-saona.jpg.
-- Dimensões: 1536 × 1024 pixels.
-- JPEG: 556.862 bytes, aproximadamente 78% menor que o PNG original.
-- Conversão realizada no Paint, preservando o original.
-- Textos e botões serão implementados em React.
-- Enquadramento responsivo e contraste serão verificados na implementação.
+Para executar:
 
-### Pacotes planejados
+```bash
+npm run test -- --run
+```
 
-Os pacotes, preços e estoques serão fictícios, para demonstração acadêmica.
+## Checkout fictício
 
-| Pacote | Categoria | Imagem planejada |
-|---|---|---|
-| Curaçao | Caribe | Orla de Willemstad com fachadas coloridas |
-| Cancún | Caribe | Praia de areia branca e mar turquesa |
-| Punta Cana | Caribe | Paisagem inspirada na Ilha Saona |
-| Aruba | Caribe | Praia com árvore divi-divi |
-| Paris | Europa | Torre Eiffel e paisagem urbana |
-| Roma | Europa | Coliseu e arredores |
-| Lisboa | Europa | Bonde em uma rua histórica |
-| Orlando | América do Norte | Paisagem urbana com lago e palmeiras |
-| Nova York | América do Norte | Times Square ao anoitecer |
-| Buenos Aires | América do Sul | Obelisco e Avenida 9 de Julio |
-| Santiago | América do Sul | Cidade com a Cordilheira dos Andes ao fundo |
-| Rio de Janeiro | América do Sul | Baía de Guanabara e Pão de Açúcar |
+O formulário não processa pagamentos reais.
 
-As imagens serão ilustrativas, geradas com auxílio de IA e revisadas antes do uso. Não serão apresentadas como fotografias documentais dos destinos.
+Para demonstrar a recusa simulada, informe a expressão abaixo em qualquer campo do formulário:
 
-### Textos alternativos planejados
+```text
+tentativa de golpe
+```
 
-As imagens dos destinos são ilustrações geradas com auxílio de IA. Essa informação será apresentada no catálogo.
+O resultado será direcionado para a rota `/falha`, preservando os pacotes no carrinho. Em outros casos válidos, a compra fictícia será aprovada e o carrinho será limpo.
 
-| Arquivo | Texto alternativo |
-|---|---|
-| curacao.jpg | Fachadas coloridas à beira do porto, em Willemstad |
-| cancun.jpg | Praia de areia branca, mar turquesa e hotéis, em Cancún |
-| punta-cana.jpg | Coqueiros e águas claras em praia na Ilha Saona |
-| aruba.jpg | Árvore divi-divi à beira de uma praia em Aruba |
-| paris.jpg | Torre Eiffel e Rio Sena ao entardecer, em Paris |
-| roma.jpg | Coliseu iluminado pela luz de fim de tarde, em Roma |
-| lisboa.jpg | Bonde amarelo entre fachadas históricas, em Lisboa |
-| orlando.jpg | Lago, palmeiras e edifícios ao entardecer, em Orlando |
-| nova-york.jpg | Telões luminosos e táxis amarelos na Times Square |
-| buenos-aires.jpg | Obelisco e avenida arborizada em Buenos Aires |
-| santiago.jpg | Edifícios e Andes nevados em cena de Santiago |
-| rio-de-janeiro.jpg | Pão de Açúcar e baía com veleiros no Rio de Janeiro |
+## Acessibilidade e responsividade
 
-O texto alternativo será ajustado conforme o contexto do componente. Imagens puramente decorativas poderão usar alt vazio para evitar repetição.
+- Estrutura semântica com cabeçalho, navegação, conteúdo principal, seções e rodapé.
+- Imagens com textos alternativos contextuais.
+- Botões e links acessíveis por teclado.
+- Estados de carregamento e erro anunciados com `role="status"` e `role="alert"`.
+- Interface revisada em celular, tablet e desktop.
+- Contraste entre textos, botões e fundos revisado no layout.
 
-### Origem dos recursos visuais
+## Recursos visuais
 
-O símbolo, o banner e as 12 imagens dos destinos foram gerados com auxílio de IA e aprovados pelo autor do projeto.
+A identidade visual, o banner e as imagens dos destinos foram produzidos com auxílio de IA exclusivamente para este projeto acadêmico. As imagens são ilustrativas e não representam ofertas reais, disponibilidade de viagens ou fotografias documentais.
 
-O painel visual fornecido pelo autor foi usado como referência para a identidade da marca.
+## Repositório
 
-As imagens dos destinos são ilustrativas e não representam fotografias documentais, disponibilidade de viagens ou serviços reais.
+[github.com/alexandredevsc/xandyturismo](https://github.com/alexandredevsc/xandyturismo)
 
-Os originais foram preservados. As cópias para uso na aplicação foram preparadas no Paint:
-- Símbolo: PNG com transparência, 256 × 256 pixels.
-- Banner: JPEG, 1536 × 1024 pixels.
-- Destinos: JPEG, 960 × 640 pixels.
+## Links do projeto
 
-O painel visual de referência foi gerado pelo autor com auxílio de IA no ChatGPT Plus e utilizado como base para a identidade visual da XandyTurismo.
+- **Aplicação publicada:** [Acessar XandyTurismo](COLE_AQUI_O_LINK_DO_VERCEL)
+- **Planejamento no Trello:** [Ver quadro do projeto](https://trello.com/b/HjeHwy3B/xandyturismo-projeto-final-sc-tec)
+- **Vídeo de apresentação:** [Assistir no YouTube](COLE_AQUI_O_LINK_DO_YOUTUBE)
 
-### Contrastes verificados
+## Autor
 
-| Texto | Fundo | Contraste | Uso em texto comum |
-|---|---|---|---|
-| Branco | Azul-marinho | 13,98:1 | Aprovado |
-| Grafite | Fundo claro | 13,68:1 | Aprovado |
-| Branco | Laranja | 2,61:1 | Reprovado |
-| Azul-marinho | Laranja | 5,35:1 | Aprovado |
-| Azul-marinho | Turquesa | 5,69:1 | Aprovado |
-| Azul-marinho | Verde | 5,51:1 | Aprovado |
-
-Os botões laranja utilizarão texto azul-marinho.
-Textos sobre fotografias terão o contraste verificado no layout final.
-Estados de foco, hover e desabilitado também serão revisados na implementação.
+Desenvolvido por Alexandre Alves para o Projeto Final SC TEC.
