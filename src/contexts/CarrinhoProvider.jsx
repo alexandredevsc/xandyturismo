@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { CarrinhoContext } from "./CarrinhoContext.js";
 
@@ -33,19 +33,17 @@ export function CarrinhoProvider({ children }) {
 
   function atualizarQuantidade(id, quantidade) {
     setItens((itensAtuais) =>
-      itensAtuais
-        .map((item) =>
-          item.produto.id === id
-            ? {
-                ...item,
-                quantidade: Math.min(
-                  Math.max(quantidade, 0),
-                  item.produto.estoque,
-                ),
-              }
-            : item,
-        )
-        .filter((item) => item.quantidade > 0),
+      itensAtuais.map((item) =>
+        item.produto.id === id
+          ? {
+              ...item,
+              quantidade: Math.min(
+                Math.max(quantidade, 1),
+                item.produto.estoque,
+              ),
+            }
+          : item,
+      ),
     );
   }
 
@@ -59,14 +57,18 @@ export function CarrinhoProvider({ children }) {
     setItens([]);
   }
 
-  const quantidadeTotal = itens.reduce(
-    (total, item) => total + item.quantidade,
-    0,
+  const quantidadeTotal = useMemo(
+    () => itens.reduce((total, item) => total + item.quantidade, 0),
+    [itens],
   );
 
-  const valorTotal = itens.reduce(
-    (total, item) => total + item.produto.preco * item.quantidade,
-    0,
+  const valorTotal = useMemo(
+    () =>
+      itens.reduce(
+        (total, item) => total + item.produto.preco * item.quantidade,
+        0,
+      ),
+    [itens],
   );
 
   return (
