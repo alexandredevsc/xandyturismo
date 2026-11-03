@@ -1,0 +1,116 @@
+.item {
+    list-style: none;
+}
+
+.card {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--cor-branco);
+    border: 1px solid #dbe3ec;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgb(11 45 79 / 8%);
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+.conteudo {
+    padding: 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.categoria {
+    color: var(--cor-marinho);
+    background-color: #e6f7fc;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.conteudo h2 {
+    margin: 0;
+    color: var(--cor-marinho);
+    font-size: 1.25rem;
+    min-height: 3.2rem;
+}
+
+.descricao {
+    flex: 1;
+    margin: 0;
+    color: var(--cor-texto);
+    line-height: 1.5;
+    min-height: 7.2rem;
+}
+
+.preco {
+    color: var(--cor-laranja);
+    font-size: 1.35rem;
+}
+
+.acoes {
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.acoes a,
+.acoes button {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.acoes a {
+    color: var(--cor-marinho);
+    background-color: #e6f7fc;
+}
+
+.acoes button {
+    color: var(--cor-branco);
+    background-color: var(--cor-laranja);
+}
+
+/* Centraliza os cards e seus conteúdos em telas pequenas. */
+@media (max-width: 767px) {
+    .item {
+        width: 100%;
+        
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .conteudo {
+        align-items: center;
+        text-align: center;
+    }
+
+    .conteudo h2,
+    .descricao {
+        min-height: auto;
+    }
+
+    .acoes {
+        justify-content: center;
+    }
+
+    
+}
+

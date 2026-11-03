@@ -1,14 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { CarrinhoProvider } from "./contexts/CarrinhoProvider.jsx";
+import "./index.css";
+import App from "./App.jsx";
 
-// carrega os estilos globais da aplicação
-import './index.css'
-import App from './App.jsx'
-
-// conecta a interface React ao elemento root definido no index.html
-createRoot(document.getElementById('root')).render(
-  // Ativa verificações extras durante o desenvolvimento
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <CarrinhoProvider>
+        <App />
+      </CarrinhoProvider>
+    </BrowserRouter>
   </StrictMode>,
-)
+);

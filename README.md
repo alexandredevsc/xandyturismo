@@ -1,67 +1,184 @@
-# React + Vite
+# XandyTurismo - Tour Internacional
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web responsiva para demonstração de pacotes turísticos fictícios. O projeto foi desenvolvido como entrega acadêmica do Projeto Final SC TEC - Fron-End React, Módulo 2.
 
-Currently, two official plugins are available:
+> Não há reservas, viagens ou cobranças reais nesta aplicação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- Catálogo de pacotes consumido por uma API simulada com `json-server`.
+- Estados de carregamento, erro, catálogo vazio e busca sem resultado.
+- Busca por nome, categoria ou descrição, sem diferenciar maiúsculas e minúsculas.
+- Página de detalhes por pacote e tratamento para produto inexistente.
+- Carrinho global com context API e hook personalizado.
+- Inclusão, remoção e alteração de quantidade limitada ao estoque.
+- Cálculo automático da quantidade total e do valor do pedido.
+- Indicador de itens no cabeçalho.
+- Rota de pagamento protegida para carrinho vazio.
+- Formulário de pagamento fictício com React Hook Form, Zod e componentes Material UI.
+- Simulação de aprovação, que limpa o carrinho.
+- Simulação de recusa, que preserva o carrinho e exibe a mensagem `tentativa de golpe`.
+- Layout responsivo para celular, tablet e desktop.
+- Testes automatizados com Vitest e Testing Library.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router
+- Context API
+- CSS Modules
+- Material UI
+- React Hook Form
+- Zod
+- json-server
+- Vitest
+- Testing Library
+- ESLint
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## Organização planejada
-
-A estrutura será organizada por responsabilidade. As pastas e os arquivos serão criados conforme as funcionalidades forem desenvolvidas; portanto, a estrutura abaixo representa o planejamento do projeto.
+## Estrutura do projeto
 
 ```text
 src/
-  components/
-    atoms/
-    molecules/
-    organisms/
-    templates/
-  pages/
-  routes/
-  contexts/
-  hooks/
-  services/
-  utils/
-    __tests__/
-  assets/
-  styles/
+├── assets/                 # Imagens e identidade visual
+├── components/
+│   ├── guards/             # Proteção de rotas
+│   ├── molecules/          # ProdutoCard e ItemCarrinho
+│   ├── organisms/          # Header e Footer
+│   └── templates/          # Layout compartilhado
+├── contexts/               # Contexto e Provider do carrinho
+├── hooks/                  # Hook useCarrinho
+├── pages/                  # Páginas da aplicação
+├── services/               # Comunicação com a API simulada
+├── test/                   # Configuração dos testes
+└── utils/                  # Funções reutilizáveis, como a busca
 ```
 
-### Componentes — Atomic Design
+## Rotas
 
-- **atoms:** elementos pequenos da interface, como botão e preço.
-- **molecules:** combinações de elementos, como ProdutoCard e ItemCarrinho.
-- **organisms:** conjuntos maiores da interface, como Header e ListaProdutos.
-- **templates:** estrutura compartilhada das páginas, como Layout com Header, Outlet e Footer.
+| Rota            | Descrição                        |
+| --------------- | -------------------------------- |
+| `/`             | Redireciona para o catálogo      |
+| `/produtos`     | Catálogo e busca de pacotes      |
+| `/produtos/:id` | Detalhes de um pacote            |
+| `/carrinho`     | Pacotes adicionados ao carrinho  |
+| `/pagamento`    | Checkout fictício protegido      |
+| `/sucesso`      | Resultado de compra aprovada     |
+| `/falha`        | Resultado de compra não aprovada |
+| `*`             | Página não encontrada            |
 
-### Demais responsabilidades
+## Como executar localmente
 
-- **pages:** componentes das telas associadas às rotas, como Produtos, Carrinho e Pagamento.
-- **routes:** componentes auxiliares da navegação, como RotaPrivada.
-- **contexts:** gerenciamento de estado compartilhado, como os itens e operações do carrinho.
-- **hooks:** hooks customizados para reutilizar lógica React, como useCarrinho.
-- **services:** comunicação com a API e tratamento das respostas das requisições.
-- **utils:** funções independentes da interface, como busca, formatação monetária e cálculo de totais.
-- utils/__tests__/: testes unitários das funções de regra de negócio.
-- **assets:** recursos importados pelo código, como imagens e logotipos.
-- **styles:** estilos globais e definições visuais compartilhadas. Os arquivos CSS Modules ficarão próximos dos componentes que estilizam.
+### 1. Instale as dependências
 
-### Arquivos de entrada
+```bash
+npm install
+```
 
-- **index.html:** documento HTML inicial, localizado na raiz do projeto, com o elemento root.
-- **src/main.jsx:** inicializa o React e renderiza o componente principal no elemento root.
-- **src/App.jsx:** componente principal que organizará as rotas da aplicação.
+### 2. Inicie a API simulada
 
-### Critério de organização
+Em um terminal:
 
-Os componentes serão classificados conforme sua responsabilidade e composição, evitando divisões desnecessárias. O estado do carrinho ficará centralizado no contexto; as requisições ficarão nos serviços; e as regras de negócio reutilizáveis ficarão em utils.
+```bash
+npm run api
+```
+
+A API será disponibilizada em:
+
+```text
+http://localhost:3001
+```
+
+### 3. Inicie a aplicação
+
+Em outro terminal:
+
+```bash
+npm run dev
+```
+
+Abra o endereço informado pelo Vite, normalmente:
+
+```text
+http://localhost:5173
+```
+
+## Comandos disponíveis
+
+| Comando                 | Finalidade                              |
+| ----------------------- | --------------------------------------- |
+| `npm run dev`           | Inicia a aplicação em desenvolvimento   |
+| `npm run api`           | Inicia a API simulada com json-server   |
+| `npm run test -- --run` | Executa os testes automatizados uma vez |
+| `npm run lint`          | Verifica regras de qualidade do código  |
+| `npm run build`         | Gera a versão de produção               |
+| `npm run preview`       | Visualiza localmente a build gerada     |
+
+## Testes automatizados
+
+Foram implementados 14 testes automatizados:
+
+- **5 testes** para a busca de pacotes:
+  - busca vazia;
+  - busca por nome;
+  - busca por categoria;
+  - busca por descrição;
+  - busca sem correspondência.
+
+- **5 testes** para o serviço da API:
+  - lista válida;
+  - erro HTTP;
+  - resposta inválida;
+  - pacote inexistente;
+  - pacote encontrado.
+
+- **4 testes** para as regras do carrinho:
+  - adição e cálculo de total;
+  - limite de estoque;
+  - quantidade mínima;
+  - remoção e limpeza.
+
+Para executar:
+
+```bash
+npm run test -- --run
+```
+
+## Checkout fictício
+
+O formulário não processa pagamentos reais.
+
+Para demonstrar a recusa simulada, informe a expressão abaixo em qualquer campo do formulário:
+
+```text
+tentativa de golpe
+```
+
+O resultado será direcionado para a rota `/falha`, preservando os pacotes no carrinho. Em outros casos válidos, a compra fictícia será aprovada e o carrinho será limpo.
+
+## Acessibilidade e responsividade
+
+- Estrutura semântica com cabeçalho, navegação, conteúdo principal, seções e rodapé.
+- Imagens com textos alternativos contextuais.
+- Botões e links acessíveis por teclado.
+- Estados de carregamento e erro anunciados com `role="status"` e `role="alert"`.
+- Interface revisada em celular, tablet e desktop.
+- Contraste entre textos, botões e fundos revisado no layout.
+
+## Recursos visuais
+
+A identidade visual, o banner e as imagens dos destinos foram produzidos com auxílio de IA exclusivamente para este projeto acadêmico. As imagens são ilustrativas e não representam ofertas reais, disponibilidade de viagens ou fotografias documentais.
+
+## Repositório
+
+[github.com/alexandredevsc/xandyturismo](https://github.com/alexandredevsc/xandyturismo)
+
+## Links do projeto
+
+- **Aplicação publicada:** [Acessar XandyTurismo](https://xandyturismo.vercel.app)
+- **Planejamento no Trello:** [Ver quadro do projeto](https://trello.com/b/HjeHwy3B/xandyturismo-projeto-final-sc-tec)
+- **Vídeo de apresentação:** [Assistir no YouTube](https://youtu.be/BEq0ywUWYwU)
+
+## Autor
+
+Desenvolvido por Alexandre Alves para o Projeto Final SC TEC.

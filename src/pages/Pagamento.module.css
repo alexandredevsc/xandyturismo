@@ -1,0 +1,137 @@
+.pagina {
+    width: min(100%, 1200px);
+    margin: 0 auto;
+    padding: 48px 0 72px;
+}
+
+.cabecalho {
+    max-width: 720px;
+    margin-bottom: 32px;
+}
+
+.cabecalho p {
+    margin: 0 0 8px;
+    color: var(--cor-turquesa);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    color: var(--cor-marinho);
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.cabecalho span {
+    display: block;
+    margin-top: 12px;
+}
+
+.conteudo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.360px);
+    align-items: start;
+    gap: 28px;
+}
+
+.formulario,
+.resumo {
+    display: grid;
+    gap: 18px;
+    padding: 24px;
+    background: var(--cor-branco);
+    border: 1px solid #dbe3ec;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgb(11 45 79 / 8%);
+}
+
+.formulario label {
+    display: grid;
+    gap: 8px;
+    color: var(--cor-marinho);
+    font-weight: 700;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 12px 14px;
+    color: var(--cor-texto);
+    background: var(--cor-branco);
+    border: 1px solid #b8c7d8;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.formulario small {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.camposMenores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.botaoPrincipal {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    color: var(--cor-branco);
+    background: var(--cor-laranja);
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.botaoPrincipal:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.resumo h2 {
+    margin: 0;
+    color: var(--cor-marinho);
+}
+
+.resumo ul {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.resumo li,
+.total {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.total {
+    padding-top: 18px;
+    border-top: 1px solid #dbe3ec;
+    color: var(--cor-marinho);
+    font-size: 1.2rem;
+}
+
+.total strong {
+    color: var(--cor-laranja);
+}
+
+@media (max-width: 767px) {
+    .pagina {
+        padding: 32px 0 48px;
+    }
+
+    .conteudo {
+        grid-template-columns: 1fr;
+    }
+}
